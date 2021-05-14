@@ -24,6 +24,14 @@ class TestModels(unittest.TestCase):
     db.session.commit()
     users = User.query.all()
     self.assertEqual(len(users), 1)
+  
+  def test_password(self):
+    u = User(username="user", email="user@example.com")
+    p = "test"
+    u.set_password(p)
+    db.session.add(u)
+    db.session.commit()
+    self.assertTrue(u.check_password(p))
 
   def test_transfer_creation(self):
     u = User(username="user", email="user@example.com")
