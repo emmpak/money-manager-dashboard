@@ -3,7 +3,7 @@ import unittest
 
 from config import basedir
 from app import app, db
-from app.models import User
+from app.models import User, Transfer
 
 TEST_DB = 'test.db'
 
@@ -24,4 +24,12 @@ class TestModels(unittest.TestCase):
     db.session.commit()
     users = User.query.all()
     self.assertEqual(len(users), 1)
+
+  def test_transfer_creation(self):
+    u = User(username="user", email="user@example.com")
+    db.session.add(u)
+    db.session.commit()
+    t = Transfer(currency="GBP", amount=100, originator=u)
+    transfers = Transfer.query.all()
+    self.assertEqual(len(transfers), 1)
 
