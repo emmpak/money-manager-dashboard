@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block body %}
-  <h1>Welcome back, {{ user.username }}!</h1>
+  <h1>Welcome back, {{ g.current_user.username }}!</h1>
   <br>
   <table>
     <tr>
@@ -9,7 +9,7 @@
       <th>Amount</th>
       <th>Currency</th>
     </tr>
-    {% for t in user.transfers %}  
+    {% for t in g.current_user.transfers %}  
       <tr>
         <td>Transfer</td>
         <td>{{ t.amount }}</td>
