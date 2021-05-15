@@ -2,5 +2,10 @@
 {% block body %}
 <h2>Transfer Details</h2>
 <p>Amount: {{transfer.amount}} {{transfer.currency}}</p>
+<p>
+  {{ form.note.label }}
+  {{ form.note() }}
+  {{ form.submit() }}
+</p>
 <p></p>
 {% endblock %}

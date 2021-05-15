@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, session, g
 from app import app, db
 from app.models import User, Transfer
-from app.forms import LoginForm
+from app.forms import LoginForm, NoteForm
 
 @app.before_request
 def before_request():
@@ -41,4 +41,4 @@ def transfer(transfer_id):
   if g.current_user:
     transfer = db.session.query(Transfer).join(User).filter(User.id == g.current_user.id, Transfer.id == int(transfer_id)).first()
     if transfer:
-      return render_template("transfer.html", transfer=transfer)
+      return render_template("transfer.html", transfer=transfer, form=NoteForm())
