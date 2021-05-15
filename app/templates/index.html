@@ -11,7 +11,7 @@
     </tr>
     {% for t in g.current_user.transfers %}  
       <tr>
-        <td>Transfer</td>
+        <td><a href="{{ url_for('transfer', transfer_id=t.id) }}">Transfer</a></td>
         <td>{{ t.amount }}</td>
         <td>{{ t.currency }}</td>
       </tr>

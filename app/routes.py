@@ -1,5 +1,5 @@
 from flask import render_template, redirect, url_for, session, g
-from app import app
+from app import app, db
 from app.models import User, Transfer
 from app.forms import LoginForm
 
@@ -38,6 +38,7 @@ def logout():
 
 @app.route('/transfers/<transfer_id>')
 def transfer(transfer_id):
-  user = User(username='user')
-  transfer = Transfer(currency="USD", amount=100, originator=user)
-  transfer = Transfer.query.filter_by()
+  if g.current_user:
+    transfer = db.session.query(Transfer).join(User).filter(User.id == g.current_user.id, Transfer.id == int(transfer_id)).first()
+    if transfer:
+      return render_template("transfer.html", transfer=transfer)

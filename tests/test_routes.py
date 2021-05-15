@@ -52,6 +52,12 @@ class TestRoutes(unittest.TestCase):
     self.assertEquals(res.status_code, 200)
     self.assertIn(b'Log In', res.data)
 
+  def test_transfer_page(self):
+    self.login()
+    res = self.client.get('/transfers/1')
+    self.assertEquals(res.status_code, 200)
+    self.assertIn(b'USD', res.data)
+
   def login(self):
     return self.client.post('/login', data={'username': 'user', 'password': 'test'}, follow_redirects=True)
 
