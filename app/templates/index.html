@@ -2,4 +2,20 @@
 
 {% block body %}
   <h1>Welcome back, {{ user.username }}!</h1>
+  <br>
+  <table>
+    <tr>
+      <th>Type</th>
+      <th>Amount</th>
+      <th>Currency</th>
+    </tr>
+    {% for t in user.transfers %}  
+      <tr>
+        <td>Transfer</td>
+        <td>{{ t.amount }}</td>
+        <td>{{ t.currency }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
 {% endblock %}

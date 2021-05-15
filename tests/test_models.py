@@ -29,9 +29,8 @@ class TestModels(unittest.TestCase):
     u = User(username="user", email="user@example.com")
     p = "test"
     u.set_password(p)
-    db.session.add(u)
-    db.session.commit()
     self.assertTrue(u.check_password(p))
+    self.assertFalse(u.check_password('t'))
 
   def test_transfer_creation(self):
     u = User(username="user", email="user@example.com")
