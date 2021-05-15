@@ -25,8 +25,13 @@ class TestRoutes(unittest.TestCase):
   def test_index_page(self):
     res = self.client.get('/')
     self.assertEqual(res.status_code, 200)
-    self.assertIn(b'Welcome back, Emil', res.data)
+    self.assertIn(b'Welcome back, user', res.data)
     self.assertIn(b'Transfer', res.data)
+
+  def test_login_page(self):
+    res = self.client.get('/login')
+    self.assertEqual(res.status_code, 200)
+    self.assertIn(b'Log In', res.data)
 
 if __name__ == '__main__':
     unittest.main()

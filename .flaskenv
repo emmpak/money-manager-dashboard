@@ -1,1 +1,2 @@
 FLASK_APP=dashboard.py
+SECRET_KEY=sekret
