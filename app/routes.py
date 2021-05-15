@@ -30,6 +30,11 @@ def login():
     session['user_id'] = user.id
     return redirect(url_for('index'))
   return render_template('login.html', form=form)
+  
+@app.route('/logout')
+def logout():
+  session.pop('user_id', None)
+  return redirect(url_for('login'))
 
 @app.route('/transfers/<transfer_id>')
 def transfer(transfer_id):
