@@ -39,4 +39,3 @@ class TestModels(unittest.TestCase):
     t = Transfer(currency="GBP", amount=100, originator=u)
     transfers = Transfer.query.all()
     self.assertEqual(len(transfers), 1)
-

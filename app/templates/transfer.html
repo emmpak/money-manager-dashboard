@@ -2,10 +2,17 @@
 {% block body %}
 <h2>Transfer Details</h2>
 <p>Amount: {{transfer.amount}} {{transfer.currency}}</p>
-<p>
-  {{ form.note.label }}
-  {{ form.note() }}
-  {{ form.submit() }}
-</p>
-<p></p>
+<p>Notes:</p>
+<ul>
+{% for note in transfer.notes %}
+  <li>{{note.body}}</li>
+{% endfor %}
+</ul>
+<form action="" method="post">
+  {{ form.hidden_tag() }}
+  <p>
+    {{ form.note.label }}
+    {{ form.note() }}
+    {{ form.submit() }}
+  </p>
 {% endblock %}

@@ -24,6 +24,15 @@ class Transfer(db.Model):
   currency = db.Column(db.String(3))
   amount = db.Column(db.Integer)
   user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+  notes = db.relationship('Note', backref='transfer', lazy='dynamic')
 
   def __repr__(self):
     return '<Transfer {}>'.format(f"{self.amount} {self.currency} from {self.originator}")
+
+class Note(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  body = db.Column(db.String(140))
+  transfer_id = db.Column(db.Integer, db.ForeignKey('transfer.id'))
+
+def __repr__(self):
+  return '<Note {}>'.format(self.body)
