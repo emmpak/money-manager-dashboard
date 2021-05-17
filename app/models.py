@@ -34,5 +34,5 @@ class Note(db.Model):
   body = db.Column(db.String(140))
   transfer_id = db.Column(db.Integer, db.ForeignKey('transfer.id'))
 
-def __repr__(self):
-  return '<Note {}>'.format(self.body)
+  def __repr__(self):
+    return '<Note {}>'.format(self.body)
